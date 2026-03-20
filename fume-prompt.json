@@ -1,0 +1,164 @@
+{
+  "project_name": "Fume Coworking",
+  "project_type": "Next.js Website",
+  "framework": {
+    "name": "Next.js 16",
+    "language": "TypeScript",
+    "css": "Tailwind CSS v4",
+    "ui_components": "shadcn/ui + custom components"
+  },
+  "theme": {
+    "mode": "Dark mode primary (black/blue palette)",
+    "colors": {
+      "primary": "Dark blue (#1e40af family)",
+      "secondary": "Zinc (#18181b)",
+      "accent": "Amber (#fbbf24) for highlights",
+      "background": {
+        "dark": "Black with blue tint (oklch 0.12 0.02 260)",
+        "light": "Light grey (oklch 0.98 0 0)"
+      },
+      "text": {
+        "primary": "White (#fafafa)",
+        "secondary": "Zinc (#a1a1aa)"
+      }
+    },
+    "typography": {
+      "font_family": "Inter (Google Fonts)",
+      "headings": "Bold, tracking-tight"
+    }
+  },
+  "brand": {
+    "name": "Fume Coworking",
+    "tagline": "Your Home Office, Away From Home",
+    "locations": ["Delhi (Netaji Subhash Palace)", "Gurgaon (Udyog Vihar Phase 4)"],
+    "contact": {
+      "phone": "+91 98765 43210",
+      "email": "hello@fumecoworking.in"
+    }
+  },
+  "pages": [
+    {
+      "name": "Home",
+      "path": "/",
+      "sections": [
+        {
+          "name": "Animated Hero",
+          "description": "Full-screen hero with animated rotating text 'Away From Home', 'Near You', 'For Your Team', 'For Your Startup', 'Every Workday'. Background image with dark overlay gradient. Two CTA buttons: Book a Tour, View Workspaces."
+        },
+        {
+          "name": "Locations Preview",
+          "description": "Grid of 2 location cards showing Delhi and Gurgaon with images, seat count (250 each), connectivity status"
+        },
+        {
+          "name": "Pricing Preview",
+          "description": "Creative pricing cards showcasing workspace options"
+        },
+        {
+          "name": "Amenities Preview",
+          "description": "Feature section with hover effects showing amenities"
+        },
+        {
+          "name": "CTA Section",
+          "description": "Gradient background (black to blue-950), 'Ready to Experience Fume?' heading with Book a Tour and Contact Us buttons"
+        }
+      ]
+    },
+    {
+      "name": "Locations",
+      "path": "/locations",
+      "description": "Details about 2 coworking spaces - Delhi (NSP) and Gurgaon (Udyog Vihar). Each with features list, seat count, connectivity"
+    },
+    {
+      "name": "Workspaces",
+      "path": "/workspaces",
+      "description": "Pricing/workspace cards with tabs: All, Hourly, Monthly. 7 workspace types: Day Pass (₹499/day), Open Dedicated (₹8000/mo), Cubicle (₹12000/mo), Private Cabin (₹35000/mo), Meeting Room (₹500/hr), Conference Room (₹1500/hr), Virtual Office (₹2000/mo)"
+    },
+    {
+      "name": "Amenities",
+      "path": "/amenities",
+      "description": "Grid of 10 amenities with icons: High-Speed WiFi, Free Coffee, Meeting Rooms, 24/7 Access, Parking, Printer, Reception, Security, Kitchen, Lockers"
+    },
+    {
+      "name": "Events",
+      "path": "/events",
+      "description": "Placeholder page for events"
+    },
+    {
+      "name": "Contact",
+      "path": "/contact",
+      "description": "Placeholder page for contact form"
+    }
+  ],
+  "navigation": [
+    {"name": "Home", "href": "/"},
+    {"name": "Locations", "href": "/locations"},
+    {"name": "Workspaces", "href": "/workspaces"},
+    {"name": "Amenities", "href": "/amenities"},
+    {"name": "Events", "href": "/events"},
+    {"name": "Contact", "href": "/contact"}
+  ],
+  "components": [
+    {
+      "name": "AnimatedHero",
+      "description": "Hero section with Framer Motion animations, rotating text, background image with gradient overlay"
+    },
+    {
+      "name": "FeatureSectionWithHoverEffects",
+      "description": "Grid of features with hover animation effects"
+    },
+    {
+      "name": "CreativePricing",
+      "description": "Pricing cards with brutalist design, emoji icons, shadow effects on hover"
+    },
+    {
+      "name": "Card",
+      "description": "shadcn/ui Card component with dark theme styling"
+    },
+    {
+      "name": "Button",
+      "description": "shadcn/ui Button with multiple variants (default, outline, ghost)"
+    },
+    {
+      "name": "Tabs",
+      "description": "shadcn/ui Tabs for workspace filtering"
+    }
+  ],
+  "workspace_types": [
+    {"id": "day-pass", "name": "Day Pass", "price": "₹499", "period": "per day"},
+    {"id": "dedicated", "name": "Open Dedicated", "price": "₹8,000", "period": "per month", "popular": true},
+    {"id": "cubicle", "name": "Cubicle", "price": "₹12,000", "period": "per month"},
+    {"id": "private-cabin", "name": "Private Cabin", "price": "₹35,000", "period": "per month", "popular": true},
+    {"id": "meeting-room", "name": "Meeting Room", "price": "₹500", "period": "per hour", "popular": true},
+    {"id": "conference-room", "name": "Conference Room", "price": "₹1,500", "period": "per hour"},
+    {"id": "virtual-office", "name": "Virtual Office", "price": "₹2,000", "period": "per month"}
+  ],
+  "amenities": [
+    "High-Speed WiFi (Fiber optic 1Gbps)",
+    "Free Coffee & Beverages",
+    "Meeting Rooms with AV equipment",
+    "24/7 Access",
+    "Secure Parking",
+    "Free Printer/Scanner",
+    "Professional Reception",
+    "24/7 Security & CCTV",
+    "Fully stocked Kitchen/Pantry",
+    "Personal Lockers"
+  ],
+  "key_features": [
+    "Framer Motion animations throughout",
+    "Responsive design (mobile, tablet, desktop)",
+    "Dark theme primary with light mode support",
+    "Image optimization with next/image",
+    "Shadcn/ui components",
+    "Tailwind CSS v4 with OKLCH colors",
+    "Sticky header with blur effect",
+    "Footer with 4-column layout"
+  ],
+  "images": {
+    "logo": "/fumelogo.png",
+    "hero_background": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80",
+    "location_delhi": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    "location_gurgaon": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80"
+  },
+  "prompt": "Create a premium coworking space website called 'Fume Coworking' with Next.js, TypeScript, Tailwind CSS, and Framer Motion. Use a dark theme with black and blue colors (#18181b background, #1e40af primary blue). Include:\n\n1. ANIMATED HERO: Full-screen hero with rotating text animation (Away From Home, Near You, For Your Team, For Your Startup, Every Workday) using Framer Motion, background image with gradient overlay\n\n2. LOCATIONS: Two locations in Delhi (Netaji Subhash Palace) and Gurgaon (Udyog Vihar), each with 250 seats, excellent connectivity, showing location image, address, and features\n\n3. WORKSPACES: 7 workspace types displayed in cards with tabs (All/Hourly/Monthly): Day Pass ₹499/day, Dedicated Desk ₹8000/mo, Cubicle ₹12000/mo, Private Cabin ₹35000/mo, Meeting Room ₹500/hr, Conference Room ₹1500/hr, Virtual Office ₹2000/mo. Use brutalist card design with emoji icons and shadow hover effects\n\n4. AMENITIES: Grid of 10 amenities (WiFi, Coffee, Meeting Rooms, 24/7 Access, Parking, Printer, Reception, Security, Kitchen, Lockers) with hover effects\n\n5. HEADER: Sticky with blur, logo, navigation links (Locations, Workspaces, Amenities, Events, Contact), location indicator, Book Now button\n\n6. FOOTER: 4-column layout with logo/tagline, location links, workspace links, contact info\n\nUse Inter font, OKLCH color system, shadcn/ui components, and ensure fully responsive design."
+}

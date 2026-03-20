@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { Wifi, Coffee, Building, Shield, Clock, Users, Printer, Lock, Car, Zap, Gamepad2, CheckCircle } from "lucide-react"
 
 type FeatureConfig = {
   title: string
@@ -8,63 +9,74 @@ type FeatureConfig = {
   icon: React.ReactNode
 }
 
+const iconComponents = {
+  Wifi: <Wifi className="w-8 h-8 text-primary" />,
+  Coffee: <Coffee className="w-8 h-8 text-primary" />,
+  Building: <Building className="w-8 h-8 text-primary" />,
+  Shield: <Shield className="w-8 h-8 text-primary" />,
+  Clock: <Clock className="w-8 h-8 text-primary" />,
+  Users: <Users className="w-8 h-8 text-primary" />,
+  Printer: <Printer className="w-8 h-8 text-primary" />,
+  Lock: <Lock className="w-8 h-8 text-primary" />,
+  Car: <Car className="w-8 h-8 text-primary" />,
+  Zap: <Zap className="w-8 h-8 text-primary" />,
+  Gamepad: <Gamepad2 className="w-8 h-8 text-primary" />,
+  Check: <CheckCircle className="w-8 h-8 text-primary" />,
+}
+
 const baseFeatures: FeatureConfig[] = [
   {
     title: "High-speed WiFi",
     description: "Fiber-backed internet across all work areas and meeting rooms.",
-    icon: <span className="text-2xl">📶</span>,
+    icon: iconComponents.Wifi,
   },
   {
     title: "Coffee & Beverages",
     description: "Complimentary coffee, tea, and water available all day.",
-    icon: <span className="text-2xl">☕</span>,
+    icon: iconComponents.Coffee,
   },
   {
     title: "Flexible Workspaces",
     description: "Hot desks, dedicated desks, cabins, and meeting rooms on demand.",
-    icon: <span className="text-2xl">🪑</span>,
+    icon: iconComponents.Building,
   },
   {
     title: "Transparent Pricing",
     description: "Simple plans with no hidden fees or lock-ins.",
-    icon: <span className="text-2xl">💳</span>,
+    icon: iconComponents.Check,
   },
   {
     title: "Secure Access",
     description: "24/7 access with CCTV monitoring and secure entry.",
-    icon: <span className="text-2xl">🔐</span>,
+    icon: iconComponents.Shield,
   },
   {
     title: "On-site Support",
     description: "Reception and community team to help you and your guests.",
-    icon: <span className="text-2xl">❓</span>,
+    icon: iconComponents.Users,
   },
   {
-    title: "Amenities & Pantry",
-    description: "Printer, lockers, pantry, and other essentials included.",
-    icon: <span className="text-2xl">🏪</span>,
+    title: "Printer & Scanner",
+    description: "Printer, scanner, and other essentials included.",
+    icon: iconComponents.Printer,
   },
   {
     title: "Built for Teams",
     description: "Scalable spaces designed for founders, freelancers, and teams.",
-    icon: <span className="text-2xl">🤝</span>,
+    icon: iconComponents.Building,
   },
 ]
 
 type FeaturesSectionWithHoverEffectsProps = {
   features?: FeatureConfig[]
   className?: string
-  /** 
-   * Color scheme for text and borders.
-   * "dark" = suited for dark backgrounds, "light" = suited for light backgrounds.
-   */
   variant?: "dark" | "light"
 }
 
 export function FeaturesSectionWithHoverEffects({
   features = baseFeatures,
   className,
-  variant = "dark",
+  variant = "light",
 }: FeaturesSectionWithHoverEffectsProps) {
   return (
     <div
@@ -89,64 +101,17 @@ const Feature = ({ title, description, icon, index, variant }: FeatureProps) => 
   return (
     <div
       className={cn(
-        "flex flex-col lg:border-r py-10 relative group/feature",
-        variant === "dark" && "border-neutral-800",
-        variant === "light" && "border-neutral-200",
-        (index === 0 || index === 4) &&
-          (variant === "dark" ? "lg:border-l border-neutral-800" : "lg:border-l border-neutral-200"),
-        index < 4 &&
-          (variant === "dark" ? "lg:border-b border-neutral-800" : "lg:border-b border-neutral-200"),
+        "flex flex-col p-6 relative group",
+        variant === "dark" && "border-r border-gray-700 last:border-r-0",
+        variant === "light" && "border-r border-gray-200 last:border-r-0",
+        "hover:bg-primary/5 transition-colors duration-300"
       )}
     >
-      {index < 4 && (
-        <div
-          className={cn(
-            "opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t to-transparent pointer-events-none",
-            variant === "dark" ? "from-neutral-900/60" : "from-neutral-100",
-          )}
-        />
-      )}
-      {index >= 4 && (
-        <div
-          className={cn(
-            "opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b to-transparent pointer-events-none",
-            variant === "dark" ? "from-neutral-900/60" : "from-neutral-100",
-          )}
-        />
-      )}
-      <div
-        className={cn(
-          "mb-4 relative z-10 px-10",
-          variant === "dark" ? "text-neutral-400" : "text-neutral-500",
-        )}
-      >
-        {icon}
+      <div className="mb-4">{icon}</div>
+      <div className="mb-2">
+        <span className="text-lg font-semibold text-gray-900">{title}</span>
       </div>
-      <div className="text-lg font-bold mb-2 relative z-10 px-10">
-        <div
-          className={cn(
-            "absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full group-hover/feature:bg-blue-500 transition-all duration-200 origin-center",
-            variant === "dark" ? "bg-neutral-700" : "bg-neutral-300",
-          )}
-        />
-        <span
-          className={cn(
-            "group-hover/feature:translate-x-2 transition duration-200 inline-block",
-            variant === "dark" ? "text-neutral-100" : "text-neutral-900",
-          )}
-        >
-          {title}
-        </span>
-      </div>
-      <p
-        className={cn(
-          "text-sm max-w-xs relative z-10 px-10",
-          variant === "dark" ? "text-neutral-400" : "text-neutral-600",
-        )}
-      >
-        {description}
-      </p>
+      <p className="text-sm text-gray-600">{description}</p>
     </div>
   )
 }
-

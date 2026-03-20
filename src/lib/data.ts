@@ -39,6 +39,7 @@ export const workspaceTypes = [
     period: "per month",
     features: ["Dedicated desk", "24/7 access", "Lockable storage", "Free meeting hours", "Premium amenities"],
     locations: ["Delhi", "Gurgaon"],
+    popular: true,
   },
   {
     id: "cubicle",
@@ -104,6 +105,44 @@ export const amenities = [
   { name: "Kitchen/Pantry", icon: "Utensils", description: "Fully stocked kitchenette" },
   { name: "Lockers", icon: "Lock", description: "Personal storage lockers available" },
 ]
+
+export const testimonials = [
+  {
+    name: "Akash Bohra",
+    role: "RDandX Network LLP, BKC, Mumbai",
+    quote: "Our experience at Fume has been exceptional. The quality of facilities, the support, and the relationship we have built with the team has been invaluable to our business growth and development.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+  },
+  {
+    name: "Imran Khan",
+    role: "Trustsignal Ventures, Nehru Place, Delhi",
+    quote: "We have grown from a team of two to a team of 20 here. We appreciate the effort that has gone into creating a productive and supportive ecosystem for professionals.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
+  },
+  {
+    name: "Priya Sharma",
+    role: "TechStart India, Gurugram",
+    quote: "One of the best things about Fume is the sense of community. It's a great option for anyone looking for a productive and collaborative workspace.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+  },
+]
+
+export const clientLogos = [
+  "Asian Paints",
+  "Lenskart",
+  "HCLTech",
+  "NoBroker",
+  "MobiKwik",
+  "DTDC",
+  "Axis Bank",
+  "HDFC Life",
+]
+
+export const stats = {
+  cities: 2,
+  hubs: 2,
+  desks: "500+",
+}
 
 export const navItems = [
   { name: "Home", href: "/" },

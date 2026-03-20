@@ -1,193 +1,179 @@
 "use client"
 
+import React, { useState } from "react";
 import { workspaceTypes } from "@/lib/data";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, React.ReactNode> = {
-  Sun: <span className="text-3xl">☀️</span>,
-  Desk: <span className="text-3xl">🖥️</span>,
-  Box: <span className="text-3xl">📦</span>,
-  DoorClosed: <span className="text-3xl">🚪</span>,
-  Users: <span className="text-3xl">👥</span>,
-  Presentation: <span className="text-3xl">📊</span>,
-  Globe: <span className="text-3xl">🌐</span>,
+  Sun: <span className="text-4xl">☀️</span>,
+  Desk: <span className="text-4xl">🖥️</span>,
+  Box: <span className="text-4xl">📦</span>,
+  DoorClosed: <span className="text-4xl">🚪</span>,
+  Users: <span className="text-4xl">👥</span>,
+  Presentation: <span className="text-4xl">📊</span>,
+  Globe: <span className="text-4xl">🌐</span>,
 };
 
-function WorkspaceCard({ workspace, index, isPopular }: { workspace: typeof workspaceTypes[0]; index: number; isPopular: boolean }) {
-  const icon = iconMap[workspace.icon] || <span className="text-3xl">📍</span>;
-  const rotationClass = index % 3 === 0 ? "rotate-[-1deg]" : index % 3 === 1 ? "rotate-[1deg]" : "rotate-[-2deg]";
+const imageMap: Record<string, string> = {
+  "day-pass": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80",
+  "dedicated": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&q=80",
+  "cubicle": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=400&q=80",
+  "private-cabin": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80",
+  "meeting-room": "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?w=400&q=80",
+  "conference-room": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400&q=80",
+  "virtual-office": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&q=80",
+};
+
+function WorkspaceCard({ workspace, isPopular }: { workspace: typeof workspaceTypes[0]; isPopular: boolean }) {
+  const icon = iconMap[workspace.icon] || <span className="text-4xl">📍</span>;
+  const image = imageMap[workspace.id] || "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80";
 
   return (
-    <div
-      className={cn(
-        "relative group",
-        "transition-all duration-300",
-        rotationClass
-      )}
-    >
-      <div
-        className={cn(
-          "absolute inset-0 bg-white dark:bg-zinc-900",
-          "border-2 border-zinc-900 dark:border-white",
-          "rounded-lg shadow-[4px_4px_0px_0px] shadow-zinc-900 dark:shadow-white",
-          "transition-all duration-300",
-          "group-hover:shadow-[8px_8px_0px_0px]",
-          "group-hover:translate-x-[-4px]",
-          "group-hover:translate-y-[-4px]"
-        )}
-      />
-
-      <div className="relative p-6">
-        {isPopular && (
-          <div
-            className="absolute -top-2 -right-2 bg-amber-400 text-zinc-900 
-            font-bold px-3 py-1 rounded-full rotate-12 text-sm border-2 border-zinc-900"
-          >
-            Popular!
-          </div>
-        )}
-
-        <div className="mb-6">
-          <div
-            className={cn(
-              "w-12 h-12 rounded-full mb-4",
-              "flex items-center justify-center",
-              "border-2 border-zinc-900 dark:border-white"
-            )}
-          >
+    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+      <div className="relative h-48">
+        <Image
+          src={image}
+          alt={workspace.name}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
+          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
             {icon}
           </div>
-          <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">
-            {workspace.name}
-          </h3>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            {workspace.description}
-          </p>
         </div>
-
-        <div className="mb-6">
-          <span className="text-4xl font-bold text-zinc-900 dark:text-white">
-            {workspace.price}
-          </span>
-          <span className="text-zinc-600 dark:text-zinc-400 ml-1">
-            /{workspace.period}
-          </span>
+      </div>
+      <CardHeader className="flex-grow text-center">
+        {isPopular && (
+          <div className="bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full inline-block mb-2 mx-auto">
+            Popular
+          </div>
+        )}
+        <CardTitle className="text-xl">{workspace.name}</CardTitle>
+        <CardDescription>{workspace.description}</CardDescription>
+      </CardHeader>
+      <CardContent className="text-center">
+        <div className="mb-4">
+          <span className="text-4xl font-bold text-gray-900">{workspace.price}</span>
+          <span className="text-gray-500 ml-1">/{workspace.period}</span>
         </div>
-
-        <div className="space-y-3 mb-6">
+        
+        <ul className="space-y-2 mb-6 text-left">
           {workspace.features.map((feature) => (
-            <div
-              key={feature}
-              className="flex items-center gap-3"
-            >
-              <div
-                className="w-5 h-5 rounded-full border-2 border-zinc-900 
-                dark:border-white flex items-center justify-center flex-shrink-0"
-              >
-                <Check className="w-3 h-3" />
-              </div>
-              <span className="text-lg text-zinc-900 dark:text-white">
-                {feature}
-              </span>
-            </div>
+            <li key={feature} className="flex items-center gap-2 text-sm text-gray-600">
+              <Check className="w-4 h-4 text-primary flex-shrink-0" />
+              {feature}
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <Link href="/contact">
-          <Button
-            className={cn(
-              "w-full h-12 text-lg relative",
-              "border-2 border-zinc-900 dark:border-white",
-              "transition-all duration-300",
-              "shadow-[4px_4px_0px_0px] shadow-zinc-900 dark:shadow-white",
-              "hover:shadow-[6px_6px_0px_0px]",
-              "hover:translate-x-[-2px] hover:translate-y-[-2px]",
-              isPopular
-                ? "bg-amber-400 text-zinc-900 hover:bg-amber-300"
-                : "bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-white hover:bg-white dark:hover:bg-zinc-700"
-            )}
-          >
+        <Link href="/contact" className="block">
+          <Button className="w-full bg-primary hover:bg-primary/90 group">
             Book Now
+            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Button>
         </Link>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function TabButton({ 
+  active, 
+  onClick, 
+  children 
+}: { 
+  active: boolean; 
+  onClick: () => void; 
+  children: React.ReactNode; 
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`px-8 py-3 font-medium text-sm transition-all rounded-none ${
+        active 
+          ? "bg-primary text-white" 
+          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+      }`}
+    >
+      {children}
+    </button>
   );
 }
 
 export default function WorkspacesPage() {
   const hourlySpaces = workspaceTypes.filter(w => w.period.includes("hour"));
   const monthlySpaces = workspaceTypes.filter(w => w.period.includes("month"));
-
-  const allPopularId = "dedicated";
-  const hourlyPopularId = "meeting-room";
-  const monthlyPopularId = "private-cabin";
+  
+  const [activeTab, setActiveTab] = useState("all");
 
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-br from-black to-blue-950 py-20">
+      <section className="bg-gray-900 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold text-white mb-4">Workspaces</h1>
-          <p className="text-xl text-zinc-300 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Workspaces</h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Flexible workspace solutions for every need - from hourly meeting rooms to monthly private offices
           </p>
         </div>
       </section>
 
-      <section className="py-20 bg-zinc-950">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <Tabs defaultValue="all" className="w-full">
-            <div className="flex justify-center mb-12">
-              <TabsList className="grid w-full max-w-md grid-cols-3 bg-zinc-900">
-                <TabsTrigger value="all" className="text-white data-[state=active]:bg-amber-400 data-[state=active]:text-zinc-900">All</TabsTrigger>
-                <TabsTrigger value="hourly" className="text-white data-[state=active]:bg-amber-400 data-[state=active]:text-zinc-900">Hourly</TabsTrigger>
-                <TabsTrigger value="monthly" className="text-white data-[state=active]:bg-amber-400 data-[state=active]:text-zinc-900">Monthly</TabsTrigger>
-              </TabsList>
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex border border-gray-300">
+              <TabButton active={activeTab === "all"} onClick={() => setActiveTab("all")}>
+                All
+              </TabButton>
+              <TabButton active={activeTab === "hourly"} onClick={() => setActiveTab("hourly")}>
+                Hourly
+              </TabButton>
+              <TabButton active={activeTab === "monthly"} onClick={() => setActiveTab("monthly")}>
+                Monthly
+              </TabButton>
             </div>
+          </div>
 
-            <TabsContent value="all" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {workspaceTypes.map((workspace, index) => (
-                  <WorkspaceCard 
-                    key={workspace.id} 
-                    workspace={workspace} 
-                    index={index}
-                    isPopular={workspace.id === allPopularId}
-                  />
-                ))}
-              </div>
-            </TabsContent>
+          {activeTab === "all" && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {workspaceTypes.map((workspace) => (
+                <WorkspaceCard 
+                  key={workspace.id} 
+                  workspace={workspace} 
+                  isPopular={workspace.popular || false}
+                />
+              ))}
+            </div>
+          )}
 
-            <TabsContent value="hourly" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {hourlySpaces.map((workspace, index) => (
-                  <WorkspaceCard 
-                    key={workspace.id} 
-                    workspace={workspace} 
-                    index={index}
-                    isPopular={workspace.id === hourlyPopularId}
-                  />
-                ))}
-              </div>
-            </TabsContent>
+          {activeTab === "hourly" && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {hourlySpaces.map((workspace) => (
+                <WorkspaceCard 
+                  key={workspace.id} 
+                  workspace={workspace} 
+                  isPopular={false}
+                />
+              ))}
+            </div>
+          )}
 
-            <TabsContent value="monthly" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {monthlySpaces.map((workspace, index) => (
-                  <WorkspaceCard 
-                    key={workspace.id} 
-                    workspace={workspace} 
-                    index={index}
-                    isPopular={workspace.id === monthlyPopularId}
-                  />
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+          {activeTab === "monthly" && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {monthlySpaces.map((workspace) => (
+                <WorkspaceCard 
+                  key={workspace.id} 
+                  workspace={workspace} 
+                  isPopular={workspace.popular || false}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

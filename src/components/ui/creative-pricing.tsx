@@ -23,71 +23,52 @@ function CreativePricing({
 }) {
     return (
         <div className="w-full max-w-6xl mx-auto px-4">
-            <div className="text-center mb-10">
-                <h2 className="text-4xl font-bold text-zinc-50 mb-4">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                     {title}
                 </h2>
-                <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                     {description}
                 </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {tiers.map((tier, index) => (
+                {tiers.map((tier) => (
                     <div
                         key={tier.name}
                         className={cn(
-                            "relative group",
-                            "transition-all duration-300",
-                            index === 0 && "rotate-[-1deg]",
-                            index === 1 && "rotate-[1deg]",
-                            index === 2 && "rotate-[-2deg]"
+                            "relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300",
+                            tier.popular && "ring-2 ring-primary"
                         )}
                     >
-                        <div
-                            className={cn(
-                                "absolute inset-0 bg-white dark:bg-zinc-900",
-                                "border-2 border-zinc-900 dark:border-white",
-                                "rounded-lg shadow-[4px_4px_0px_0px] shadow-zinc-900 dark:shadow-white",
-                                "transition-all duration-300",
-                                "group-hover:shadow-[8px_8px_0px_0px]",
-                                "group-hover:translate-x-[-4px]",
-                                "group-hover:translate-y-[-4px]"
-                            )}
-                        />
+                        {tier.popular && (
+                            <div className="bg-primary text-white text-center py-2 font-semibold">
+                                Most Popular
+                            </div>
+                        )}
 
-                        <div className="relative p-6">
-                            {tier.popular && (
-                                <div
-                                    className="absolute -top-2 -right-2 bg-amber-400 text-zinc-900 
-                                    font-bold px-3 py-1 rounded-full rotate-12 text-sm border-2 border-zinc-900"
-                                >
-                                    Popular!
-                                </div>
-                            )}
-
+                        <div className="p-8">
                             <div className="mb-6">
-                                <div
-                                    className={cn(
-                                        "w-12 h-12 rounded-full mb-4",
-                                        "flex items-center justify-center",
-                                        "border-2 border-zinc-900 dark:border-white"
-                                    )}
-                                >
+                                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                                     {tier.icon}
                                 </div>
-                                <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">
                                     {tier.name}
                                 </h3>
-                                <p className="text-zinc-600 dark:text-zinc-400">
+                                <p className="text-gray-600 text-sm">
                                     {tier.description}
                                 </p>
                             </div>
 
                             <div className="mb-6">
-                                <span className="text-4xl font-bold text-zinc-900 dark:text-white">
+                                <span className="text-4xl font-bold text-gray-900">
                                     {tier.price}
                                 </span>
+                                {tier.price !== "Custom" && (
+                                    <span className="text-gray-500 ml-1">
+                                        /month
+                                    </span>
+                                )}
                             </div>
 
                             <div className="space-y-3 mb-6">
@@ -96,13 +77,8 @@ function CreativePricing({
                                         key={feature}
                                         className="flex items-center gap-3"
                                     >
-                                        <div
-                                            className="w-5 h-5 rounded-full border-2 border-zinc-900 
-                                            dark:border-white flex items-center justify-center"
-                                        >
-                                            <Check className="w-3 h-3" />
-                                        </div>
-                                        <span className="text-lg text-zinc-900 dark:text-white">
+                                        <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                                        <span className="text-gray-700">
                                             {feature}
                                         </span>
                                     </div>
@@ -111,25 +87,13 @@ function CreativePricing({
 
                             <Button
                                 className={cn(
-                                    "w-full h-12 text-lg relative",
-                                    "border-2 border-zinc-900 dark:border-white",
-                                    "transition-all duration-300",
-                                    "shadow-[4px_4px_0px_0px] shadow-zinc-900 dark:shadow-white",
-                                    "hover:shadow-[6px_6px_0px_0px]",
-                                    "hover:translate-x-[-2px] hover:translate-y-[-2px]",
+                                    "w-full",
                                     tier.popular
-                                        ? [
-                                              "bg-amber-400 text-zinc-900",
-                                              "hover:bg-amber-300",
-                                          ]
-                                        : [
-                                              "bg-zinc-50 dark:bg-zinc-800",
-                                              "text-zinc-900 dark:text-white",
-                                              "hover:bg-white dark:hover:bg-zinc-700",
-                                          ]
+                                        ? "bg-primary hover:bg-primary/90 text-white"
+                                        : "bg-gray-100 hover:bg-gray-200 text-gray-900"
                                 )}
                             >
-                                Learn More
+                                Get Started
                             </Button>
                         </div>
                     </div>

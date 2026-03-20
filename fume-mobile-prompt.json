@@ -1,0 +1,247 @@
+{
+  "project_name": "Fume Coworking",
+  "project_type": "Mobile App (React Native / Expo)",
+  "framework": {
+    "name": "React Native with Expo",
+    "language": "TypeScript",
+    "navigation": "React Navigation (Bottom Tabs + Stack)",
+    "state_management": "React Context or Zustand",
+    "ui_library": "Custom components with expo-linear-gradient"
+  },
+  "theme": {
+    "mode": "Dark mode primary (black/blue palette)",
+    "colors": {
+      "primary": "Dark blue (#1e40af family)",
+      "primary_light": "#3b82f6",
+      "secondary": "Zinc (#18181b)",
+      "accent": "Amber (#fbbf24) for highlights/popular badges",
+      "background": {
+        "dark": "#0a0a0a / #000000",
+        "surface": "#18181b",
+        "card": "#27272a",
+        "light": "#fafafa"
+      },
+      "text": {
+        "primary": "#ffffff",
+        "secondary": "#a1a1aa",
+        "muted": "#71717a"
+      },
+      "border": "#3f3f46"
+    },
+    "typography": {
+      "font_family": "System default (San Francisco on iOS, Roboto on Android)",
+      "headings": "Bold, tracking-tight",
+      "sizes": {
+        "h1": "32px",
+        "h2": "24px",
+        "h3": "20px",
+        "body": "16px",
+        "caption": "14px"
+      }
+    }
+  },
+  "brand": {
+    "name": "Fume Coworking",
+    "tagline": "Your Home Office, Away From Home",
+    "locations": ["Delhi (Netaji Subhash Palace)", "Gurgaon (Udyog Vihar Phase 4)"],
+    "contact": {
+      "phone": "+91 98765 43210",
+      "email": "hello@fumecoworking.in"
+    }
+  },
+  "screens": [
+    {
+      "name": "HomeScreen",
+      "tab_name": "Home",
+      "sections": [
+        {
+          "name": "Header",
+          "description": "Safe area with logo, location selector dropdown, notification bell icon"
+        },
+        {
+          "name": "Hero Banner",
+          "description": "Full-width gradient card (black to blue-950) with animated text cycling through 'Away From Home', 'Near You', 'For Your Team', 'For Your Startup', 'Every Workday'. Two touchable buttons: Book a Tour, View Workspaces. Background image with overlay."
+        },
+        {
+          "name": "QuickActions",
+          "description": "Horizontal scroll of 4 quick action cards: Day Pass, Book Meeting, Virtual Office, Contact Us with icons"
+        },
+        {
+          "name": "LocationsPreview",
+          "description": "Vertical list of 2 location cards (Delhi & Gurgaon) showing image, name, address, seat count (250), connectivity badge"
+        },
+        {
+          "name": "PopularWorkspaces",
+          "description": "Horizontal scroll of top 3 workspace cards: Dedicated Desk, Private Cabin, Meeting Room with price and Book button"
+        },
+        {
+          "name": "AmenitiesPreview",
+          "description": "Grid of 6 amenity icons with labels: WiFi, Coffee, Meeting Rooms, 24/7 Access, Parking, Security"
+        },
+        {
+          "name": "CTABanner",
+          "description": "Gradient banner with 'Ready to Experience Fume?' and primary CTA button"
+        }
+      ]
+    },
+    {
+      "name": "LocationsScreen",
+      "tab_name": "Locations",
+      "description": "List of 2 coworking locations. Each location card shows: cover image, location name, address, seat count, connectivity, features list (5 items). Tap to expand or view details.",
+      "location_details": [
+        {
+          "id": "delhi",
+          "name": "Netaji Subhash Palace (NSP), Delhi",
+          "address": "Netaji Subhash Place, New Delhi",
+          "seats": 250,
+          "connectivity": "Excellent",
+          "features": ["High-Speed WiFi", "Meeting Rooms", "Conference Hall", "24/7 Access", "Security"]
+        },
+        {
+          "id": "gurgaon",
+          "name": "Udyog Vihar Phase 4, Gurugram",
+          "address": "76-D, Udyog Vihar Phase 4, Gurugram, Haryana 122016",
+          "seats": 250,
+          "connectivity": "Excellent",
+          "features": ["High-Speed WiFi", "Meeting Rooms", "Premium Conference Hall", "24/7 Access", "Security"]
+        }
+      ]
+    },
+    {
+      "name": "WorkspacesScreen",
+      "tab_name": "Workspaces",
+      "description": "Tabbed list of 7 workspace types with segment control: All | Hourly | Monthly. Each card shows: icon/emoji, name, description, price, period, features list, Book button. Popular items marked with amber badge.",
+      "workspace_types": [
+        {"id": "day-pass", "name": "Day Pass", "description": "Try Fume for a day", "price": "₹499", "period": "day", "features": ["Shared workspace access", "High-speed WiFi", "Free coffee & pantry"]},
+        {"id": "dedicated", "name": "Open Dedicated", "description": "Your go-to spot for daily grind", "price": "₹8,000", "period": "month", "popular": true, "features": ["Dedicated desk", "24/7 access", "Lockable storage", "Free meeting hours"]},
+        {"id": "cubicle", "name": "Cubicle", "description": "Personal space in shared workspace", "price": "₹12,000", "period": "month", "features": ["Private cubicle", "Sound privacy", "Customizable desk", "Dedicated storage"]},
+        {"id": "private-cabin", "name": "Private Cabin", "description": "Privacy for your team", "price": "₹35,000", "period": "month", "popular": true, "features": ["Private office 2-8 seats", "Custom branding", "Meeting room quota", "Private pantry"]},
+        {"id": "meeting-room", "name": "Meeting Room", "description": "Discuss and decide with your team", "price": "₹500", "period": "hour", "popular": true, "features": ["4-10 seats", "AV equipment", "Whiteboard", "Video conferencing"]},
+        {"id": "conference-room", "name": "Conference Room", "description": "Host presentations and conferences", "price": "₹1,500", "period": "hour", "features": ["10-20 seats", "Premium AV", "Live streaming", "Catering options"]},
+        {"id": "virtual-office", "name": "Virtual Office", "description": "Elevate your work address", "price": "₹2,000", "period": "month", "features": ["Prime business address", "Mail handling", "Day pass allowance", "Meeting room credits"]}
+      ]
+    },
+    {
+      "name": "AmenitiesScreen",
+      "tab_name": "Amenities",
+      "description": "Grid of 10 amenity items (2 columns). Each item: icon, name, description. Tap for more details.",
+      "amenities": [
+        {"name": "High-Speed WiFi", "icon": "wifi", "description": "Fiber optic 1Gbps"},
+        {"name": "Free Coffee & Beverages", "icon": "coffee", "description": "Premium coffee & tea all day"},
+        {"name": "Meeting Rooms", "icon": "video", "description": "Bookable with AV equipment"},
+        {"name": "24/7 Access", "icon": "clock", "description": "Round-the-clock access"},
+        {"name": "Parking", "icon": "car", "description": "Secure parking for members"},
+        {"name": "Printer/Scanner", "icon": "printer", "description": "Free printing"},
+        {"name": "Reception", "icon": "user-check", "description": "Professional reception"},
+        {"name": "Security", "icon": "shield", "description": "24/7 security & CCTV"},
+        {"name": "Kitchen/Pantry", "icon": "utensils", "description": "Fully stocked kitchenette"},
+        {"name": "Lockers", "icon": "lock", "description": "Personal storage lockers"}
+      ]
+    },
+    {
+      "name": "BookingsScreen",
+      "tab_name": "My Bookings",
+      "description": "List of user's bookings with status: Upcoming, Active, Past. Each booking shows: workspace type, location, date/time, status badge. Empty state with CTA to browse workspaces."
+    },
+    {
+      "name": "ProfileScreen",
+      "tab_name": "Profile",
+      "description": "User profile with: avatar, name, membership status, member ID. Menu items: My Bookings, Payment History, Support, Settings, Logout."
+    },
+    {
+      "name": "WorkspaceDetailScreen",
+      "description": "Full workspace details with booking flow: select location, date picker, time slots, add-ons, price summary, confirm booking button",
+      "stack_screen": true
+    },
+    {
+      "name": "ContactScreen",
+      "description": "Contact form: name, email, phone, message. Also show phone number, email, and office addresses. Map integration optional.",
+      "stack_screen": true
+    }
+  ],
+  "bottom_tabs": [
+    {"name": "Home", "icon": "home"},
+    {"name": "Locations", "icon": "map-pin"},
+    {"name": "Workspaces", "icon": "briefcase"},
+    {"name": "Amenities", "icon": "star"},
+    {"name": "Profile", "icon": "user"}
+  ],
+  "components": [
+    {
+      "name": "LocationCard",
+      "description": "Card with cover image, gradient overlay, location name, address, seat/connectivity badges, tap for details"
+    },
+    {
+      "name": "WorkspaceCard",
+      "description": "Card with emoji icon, name, description, price, period, features list, popular badge (amber), Book button"
+    },
+    {
+      "name": "AmenityCard",
+      "description": "Square card with icon, label, tap for details"
+    },
+    {
+      "name": "QuickActionCard",
+      "description": "Small horizontal card with icon, label, tap action"
+    },
+    {
+      "name": "PrimaryButton",
+      "description": "Full-width touchable gradient button (blue-600 to blue-800), white text"
+    },
+    {
+      "name": "SegmentedControl",
+      "description": "Tab switcher for All/Hourly/Monthly filtering"
+    },
+    {
+      "name": "BookingCard",
+      "description": "Card showing booking details with status badge (Upcoming/Active/Completed)"
+    },
+    {
+      "name": "AnimatedText",
+      "description": "Rotating text component cycling through phrases with fade/slide animation"
+    },
+    {
+      "name": "GradientBanner",
+      "description": "Full-width gradient container (black to blue-950)"
+    },
+    {
+      "name": "IconButton",
+      "description": "Touchable icon in header or action bars"
+    }
+  ],
+  "workspace_pricing": {
+    "hourly": [
+      {"name": "Meeting Room", "price": "₹500/hr"},
+      {"name": "Conference Room", "price": "₹1,500/hr"}
+    ],
+    "monthly": [
+      {"name": "Open Dedicated", "price": "₹8,000/mo"},
+      {"name": "Cubicle", "price": "₹12,000/mo"},
+      {"name": "Private Cabin", "price": "₹35,000/mo"},
+      {"name": "Virtual Office", "price": "₹2,000/mo"}
+    ],
+    "daily": [
+      {"name": "Day Pass", "price": "₹499/day"}
+    ]
+  },
+  "key_features": [
+    "React Navigation with bottom tabs + stack navigator",
+    "Dark theme throughout the app",
+    "Touch-friendly UI (44pt minimum tap targets)",
+    "Smooth animations (Reanimated)",
+    "Image backgrounds with gradient overlays",
+    "Horizontal scrolling carousels",
+    "Pull-to-refresh on lists",
+    "Segmented controls for filtering",
+    "Status badges (Popular, Available, Booked)",
+    "Gradient buttons and banners",
+    "Card-based layouts with shadows",
+    "Safe area handling for notch devices"
+  ],
+  "assets_needed": [
+    "App icon (1024x1024)",
+    "Location images (Unsplash URLs available)",
+    "Tab bar icons (SF Symbols / Material icons)",
+    "Placeholder avatar for profile"
+  ],
+  "prompt": "Create a premium coworking space mobile app called 'Fume Coworking' using React Native with Expo and React Navigation. Use a dark theme with black (#0a0a0a) and blue (#1e40af) colors.\n\nSCREEN STRUCTURE (Bottom Tab Navigation):\n1. **HomeScreen**: Header with logo & location selector, animated hero banner with rotating text (Away From Home, Near You, For Your Team, For Your Startup, Every Workday), quick action cards (Day Pass, Book Meeting, Virtual Office, Contact), locations preview list (Delhi & Gurgaon - 250 seats each), popular workspaces horizontal scroll, amenities grid preview, CTA banner\n\n2. **LocationsScreen**: List of 2 locations - Delhi (Netaji Subhash Palace) and Gurgaon (Udyog Vihar). Each card: cover image, gradient overlay, name, address, seats count, connectivity badge, features list, tap for details\n\n3. **WorkspacesScreen**: Segmented control (All/Hourly/Monthly), 7 workspace cards: Day Pass ₹499/day, Open Dedicated ₹8000/mo, Cubicle ₹12000/mo, Private Cabin ₹35000/mo, Meeting Room ₹500/hr, Conference Room ₹1500/hr, Virtual Office ₹2000/mo. Each card: emoji icon, name, description, price, period, features, Book button. Mark popular items with amber badge\n\n4. **AmenitiesScreen**: 2-column grid of 10 amenities: WiFi, Coffee, Meeting Rooms, 24/7 Access, Parking, Printer, Reception, Security, Kitchen, Lockers - each with icon and description\n\n5. **ProfileScreen**: User avatar, name, membership status, menu items (My Bookings, Payment, Support, Settings, Logout)\n\nSTACK SCREENS:\n- WorkspaceDetailScreen: Full workspace info with booking flow (select location, date, time, confirm)\n- ContactScreen: Contact form with name/email/phone/message fields\n\nDESIGN: Dark theme throughout, gradient buttons (blue-600 to blue-800), card layouts, horizontal scroll carousels, smooth animations with Reanimated, proper safe area handling, 44pt minimum touch targets."
+}
